@@ -18,6 +18,7 @@
         <div>
             <label for="password">Password</label>
             <input type="password" name="password" id="password">
+            <error-output class="password-error" for="text" style="font-size: 12px; font-style: italic;color: red"></error-output>
         </div>
         <div>
             <label for="email">Email ID</label>
@@ -47,8 +48,8 @@
         </div>
         <div>
             <label for="salary">Salary</label>
-            <input type="range" name="salary" id="search" min="30000" max="500000" step="100" value="400000">
-
+            <input type="range" name="salary" id="salary" min="30000" max="500000" step="100" value="400000">
+            <output class="salary-output" for="salary">40000</output>
         </div>
         <div>
             <button>Submit</button>
@@ -86,6 +87,21 @@
             telTextError.textContent="";
             else
             telTextError.textContent="telphone is incorrect";
+        })
+        const password=document.querySelector('#password');
+        const passwordTextError=document.querySelector('.password-error');
+        password.addEventListener('input',function(){
+            let passwordRegex=RegExp('(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z])(?=.*[+@#$%^&*!.()-]).{8,}')
+            if(passwordRegex.test(password.value))
+            passwordTextError.textContent="";
+            else
+            passwordTextError.textContent="Password is incorrect";
+        })
+        const salary=document.querySelector('#salary');
+        const output=document.querySelector('.salary-output');
+        output.textContent=salary.value;
+        salary.addEventListener('input',function(){
+            output.textContent=salary.value;
         })
     </script>
 
